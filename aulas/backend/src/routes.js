@@ -31,6 +31,12 @@ routes.get("/ongs", async (req, res) => {
     return res.json(ongs);
 });
 
+routes.delete("/ongs/:id", async (req, res) => {
+    const ongs = await connection("ongs").select("*").where("id: id");
+
+    return res.json(ongs);
+});
+
 routes.post("/ongs", async (req, res) => {
     const { name, email, whatsapp, city, uf } = req.body;
 
