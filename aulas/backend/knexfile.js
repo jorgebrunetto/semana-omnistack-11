@@ -1,12 +1,20 @@
 // Update with your config settings.
-
+/**
+ * comando para criar o migration
+ * npx knex migrate:make create_ongs
+ * useNullAsDefault: true (sqlite não suporta padrao null)
+ */
 module.exports = {
 
   development: {
     client: 'sqlite3',
     connection: {
       filename: './src/database/db.sqlite'
-    }
+    },
+    migrations:{
+      directory: './src/database/migrations'
+    },
+    useNullAsDefault: true,
   },
 
   staging: {
