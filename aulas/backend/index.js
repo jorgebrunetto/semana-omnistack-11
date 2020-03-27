@@ -3,7 +3,7 @@ const express = require("express");
 
 // Inicializar o express
 const app = express();
-
+app.use(express.json());
 
 //Estou querendo acessar o recurso de usuários  '/users'
 /**
@@ -20,12 +20,12 @@ const app = express();
  * 
  * Query Params: Parametros nomeados enviados na rota após "?"
  * Route Params: Identificar um único recurso depois da "/"
- * Request Body: 
+ * Request Body: Corpo da requisição utilizado para criar ou alterar recursos
  */
 
-app.get("/users", (req, res) => {
-    const params = req.query;
-    console.log(params)
+app.post("/users", (req, res) => {
+    const body = req.body;
+    console.log(body)
     return res.json({
         evento: "Semana OmniStack 11.0",
         aluno: "Jorge Brunetto"
