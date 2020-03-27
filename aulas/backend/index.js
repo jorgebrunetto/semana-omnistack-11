@@ -28,7 +28,7 @@ app.post("/users", (req, res) => {
     console.log(body)
     return res.json({
         evento: "Semana OmniStack 11.0",
-        aluno: "Jorge Brunetto"
+        aluno: "Jorge Brunetto 1"
     });
 });
 
