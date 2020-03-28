@@ -1,8 +1,9 @@
 // Importar o express para dentro do projeto
 const express = require("express");
-const crypto = require("crypto");
+
 const routes = express.Router();
-const connection = require("./database/connection");
+
+const OngController = require("./controllers/OngController");
 //Estou querendo acessar o recurso de usuários  '/users'
 /**
  * Metodos HTTP
@@ -25,32 +26,15 @@ const connection = require("./database/connection");
  * Usar Query Builder: table('users').select('*').where('name=jorge')
  * vamos usar o KNEX.JS
  */
-routes.get("/ongs", async (req, res) => {
-    const ongs = await connection("ongs").select("*");
-
-    return res.json(ongs);
-});
 
 routes.delete("/ongs/:id", async (req, res) => {
-    const ongs = await connection("ongs").select("*").where("id: id");
+    const ongs = await connection("ongs")
+        .select("*")
+        .where("id: id");
 
     return res.json(ongs);
 });
 
-routes.post("/ongs", async (req, res) => {
-    const { name, email, whatsapp, city, uf } = req.body;
-
-    const id = crypto.randomBytes(4).toString("HEX");
-
-    await connection("ongs").insert({
-        id,
-        name,
-        email,
-        whatsapp,
-        city,
-        uf
-    });
-
-    return res.json({ id });
-});
+routes.get("/ongs", OngController.index);
+routes.post("/ongs", OngController.create);
 module.exports = routes;
