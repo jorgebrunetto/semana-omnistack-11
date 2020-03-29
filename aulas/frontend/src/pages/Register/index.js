@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
+import { Link, useHistory } from "react-router-dom";
 import api from "../../services/api";
 
 import "./styles.css";
@@ -13,9 +13,20 @@ export default function Register() {
     const [city, setCity] = useState("");
     const [uf, setUf] = useState("");
 
-    function handleRegister(e) {
+    const history = useHistory();
+
+    async function handleRegister(e) {
         e.preventDefault();
-        console.log({ name, email });
+        const data = { name, email, whatsapp, city, uf };
+
+        history.push('/');
+
+        try {
+            const response = await api.post("ongs", data);
+            alert(`Seu ID de acesso: ${response.data.id}`);
+        } catch (error) {
+            alert(`Erro no cadastro tente novamente`);
+        }
     }
     return (
         <div className="register-container">
@@ -65,7 +76,7 @@ export default function Register() {
                             style={{ width: 80 }}
                         />
                     </div>
-                    <button type="submit" class="button">
+                    <button type="submit" className="button">
                         Cadastrar
                     </button>
                 </form>
