@@ -31,7 +31,7 @@ export default StyleSheet.create({
         lineHeight: 24,
         color: "#737380"
     },
-    incidentList: {
+    incidentsList: {
         marginTop: 32
     },
     incident: {

@@ -1,11 +1,17 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity, FlatList } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import logoImg from "../../assets/logo.png";
 
 import styles from "./styles";
 
 export default function Incidents() {
+    const navigation = useNavigation();
+
+    function navigateToDetail() {
+        navigation.navigate("Detail");
+    }
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -22,6 +28,8 @@ export default function Incidents() {
             <FlatList
                 style={styles.incidentsList}
                 data={[1, 2, 3]}
+                keyExtractor={incident => String(incident)}
+                showsVerticalScrollIndicator={false}
                 renderItem={() => (
                     <View style={styles.incident}>
                         <Text style={styles.incidentProperty}>ONG:</Text>
@@ -37,7 +45,7 @@ export default function Incidents() {
 
                         <TouchableOpacity
                             style={styles.detailsButton}
-                            onPress={() => {}}
+                            onPress={navigateToDetail}
                         >
                             <Text style={styles.detailsButtonText}>
                                 Ver mais detalhes
