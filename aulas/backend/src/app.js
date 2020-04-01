@@ -17,7 +17,11 @@ app.use(express.json());
 app.use(routes);
 
 // Melhora a visualização e trata os erros do celebrate
-app.use(errors())
+app.use(errors());
 
 //Cria nosso server na porta sugerida
-app.listen(3333);
+// Para uso de testes essa aplicação foi parada
+// e exportada
+// app.listen(3333);
+
+module.exports = app;
