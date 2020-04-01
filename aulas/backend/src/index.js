@@ -1,6 +1,7 @@
 // Importar o express para dentro do projeto
 const express = require("express");
 const cors = require("cors");
+const { errors } = require("celebrate");
 const routes = require("./routes");
 
 // Inicializar o express
@@ -14,6 +15,9 @@ app.use(express.json());
 
 // Inicializa as rotas
 app.use(routes);
+
+// Melhora a visualização e trata os erros do celebrate
+app.use(errors())
 
 //Cria nosso server na porta sugerida
 app.listen(3333);
